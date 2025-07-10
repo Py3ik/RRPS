@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container text-center">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h1 class="display-1 text-danger">404</h1>
+                <h2>Упс! Страница не найдена</h2>
+                <p class="lead">Мы не смогли найти то, что вы искали. Возможно, страница была удалена или перемещена.</p>
+                <a href="{% url 'refund_list' %}" class="btn btn-primary">Вернуться на главную</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
