@@ -1,49 +1,49 @@
-# Система запросов на возврат (RRPS)
+# Refund Request Processing System (RRPS)
 
-Система для управления запросами на возврат средств. Поддерживает регистрацию, авторизацию, асинхронную валидацию IBAN, фильтрацию, пагинацию и экспорт в CSV. Использует Django с возможностью переключения между SQLite и PostgreSQL.
-
----
-
-## Возможности
-
-- Регистрация и авторизация пользователей
-- Создание запросов на возврат с проверкой IBAN через Abstract API
-- Список запросов с фильтрацией по статусу и пагинацией (20 записей)
-- Админ-панель с фильтрами, поиском и экспортом в CSV
-- Восстановление пароля (письма в консоли)
-- Переключение между SQLite и PostgreSQL через `.env`
-- Код соответствует PEP 8, отформатирован Black
+A system for managing refund requests. Supports registration, authentication, asynchronous IBAN validation, filtering, pagination, and CSV export. Built with Django, with the ability to switch between SQLite and PostgreSQL.
 
 ---
 
-## Требования
+## Features
+
+- User registration and authentication
+- Create refund requests with IBAN validation via Abstract API
+- List of requests with status filtering and pagination (20 records)
+- Admin panel with filters, search, and CSV export
+- Password reset (emails sent to console)
+- Switch between SQLite and PostgreSQL via `.env`
+- Code follows PEP 8 and is formatted with Black
+
+---
+
+## Requirements
 
 - Python 3.13
-- PostgreSQL (если `USE_SQLITE=False`)
-- Зависимости: см. `requirements.txt`
+- PostgreSQL (if `USE_SQLITE=False`)
+- Dependencies: see `requirements.txt`
 
 ---
 
-## Установка
+## Installation
 
-1. **Клонируйте репозиторий:**
+1. **Clone the repository:**
     ```bash
     git clone https://github.com/Py3ik/RRPS.git
     cd RRPS
     ```
 
-2. **Создайте виртуальное окружение:**
+2. **Create a virtual environment:**
     ```bash
     python -m venv venv
     source venv/bin/activate  # Windows: venv\Scripts\activate
     ```
 
-3. **Установите зависимости:**
+3. **Install dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
 
-4. **Создайте файл `.env` в корне:**
+4. **Create a `.env` file in the root:**
     ```env
     SECRET_KEY=''
     USE_SQLITE=False
@@ -58,66 +58,66 @@
     DEBUG=True
     ```
 
-    - Для SQLite: `USE_SQLITE=True`
-    - Для PostgreSQL: убедитесь, что база настроена (`psql -U py3ik -d refund_db`)
-    - Замените `ABSTRACT_API_KEY` на свой ключ от Abstract API
-    - Замените `SECRET_KEY` на свой ключ
+    - For SQLite: `USE_SQLITE=True`
+    - For PostgreSQL: make sure the database is set up (`psql -U py3ik -d refund_db`)
+    - Replace `ABSTRACT_API_KEY` with your Abstract API key
+    - Replace `SECRET_KEY` with your own secret
 
 ---
 
-## Настройка
+## Setup
 
-1. **Примените миграции:**
+1. **Apply migrations:**
     ```bash
     python manage.py makemigrations
     python manage.py migrate
     ```
 
-2. **Создайте суперпользователя:**
+2. **Create a superuser:**
     ```bash
     python manage.py createsuperuser
     ```
 
 ---
 
-## Запуск
+## Running
 
 ```bash
 python manage.py runserver
 ```
 
-- Приложение: [http://127.0.0.1:8000/refunds/](http://127.0.0.1:8000/refunds/)
-- Админ-панель: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+- App: [http://127.0.0.1:8000/refunds/](http://127.0.0.1:8000/refunds/)
+- Admin panel: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
 
 ---
 
-## Использование
+## Usage
 
-- **Регистрация:** `/accounts/register/` — создание аккаунта, данные сохраняются при ошибке
-- **Авторизация:** `/accounts/login/`
-- **Создание запроса:** `/refunds/create/` — IBAN проверяется асинхронно
-- **Список запросов:** `/refunds/` — фильтрация и пагинация
-- **Восстановление пароля:** `/accounts/password_reset/` — письмо в консоли
-- **Админ-панель:** фильтры, поиск, экспорт CSV
-
----
-
-## Тестирование
-
-- **Регистрация:** проверьте сохранение данных при неверном пароле
-- **IBAN:** валидный (`DE89370400440532013000`) и невалидный (`XX123`) на `/refunds/create/`
-- **База:**
-  - SQLite: `USE_SQLITE=True`, проверьте `db.sqlite3`
-  - PostgreSQL: `USE_SQLITE=False`, проверьте `psql -U py3ik -d refund_db`
-- **Админ-панель:** фильтры, экспорт CSV
+- **Registration:** `/accounts/register/` — create an account, data is preserved on error
+- **Login:** `/accounts/login/`
+- **Create request:** `/refunds/create/` — IBAN is validated asynchronously
+- **List requests:** `/refunds/` — filtering and pagination
+- **Password reset:** `/accounts/password_reset/` — email sent to console
+- **Admin panel:** filters, search, CSV export
 
 ---
 
-## Форматирование
+## Testing
 
-- Код: PEP 8, Black
-- Миграции исключены через `pyproject.toml`
-- Форматирование:
+- **Registration:** check data preservation on invalid password
+- **IBAN:** valid (`DE89370400440532013000`) and invalid (`XX123`) on `/refunds/create/`
+- **Database:**
+  - SQLite: `USE_SQLITE=True`, check `db.sqlite3`
+  - PostgreSQL: `USE_SQLITE=False`, check `psql -U py3ik -d refund_db`
+- **Admin panel:** filters, CSV export
+
+---
+
+## Formatting
+
+- Code: PEP 8, Black
+- Migrations excluded via `pyproject.toml`
+- Formatting:
   ```bash
   black .
   black --check .
