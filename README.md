@@ -61,6 +61,7 @@
     - Для SQLite: `USE_SQLITE=True`
     - Для PostgreSQL: убедитесь, что база настроена (`psql -U py3ik -d refund_db`)
     - Замените `ABSTRACT_API_KEY` на свой ключ от Abstract API
+    - Замените `SECRET_KEY` на свой ключ
 
 ---
 
