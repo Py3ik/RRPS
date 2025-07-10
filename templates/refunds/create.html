@@ -1,22 +1,27 @@
 {% extends 'base.html' %}
 
-{% block title %}Создать запрос на возврат{% endblock %}
+{% block title %}Create a return request{% endblock %}
 
 {% block content %}
 {% load widget_tweaks %}
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Создать запрос на возврат</h2>
+    <h2 class="text-center mb-4">Create a return request</h2>
     <div class="d-flex justify-content-center">
         <form method="POST" style="width: 100%; max-width: 800px;">
             {% csrf_token %}
             <div class="card shadow-sm mb-5">
                 <div class="card-body">
-                    <h4 class="card-title text-center mb-4">Заполните форму ниже</h4>
+                    <h4 class="card-title text-center mb-4">Fill out the form below</h4>
 
                     {% for field in form %}
                         <div class="form-group mb-3">
                             <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                            {{ field|add_class:"form-control" }}
+                            {% if field.name == 'iban' %}
+                                <input type="text" id="{{ field.id_for_label }}" name="{{ field.name }}" class="form-control" placeholder="Example: GB33BUKB20201555555555" value="{{ field.value }}">
+                                <small class="form-text text-muted">Please enter a valid IBAN number. Example: GB33BUKB20201555555555</small>
+                            {% else %}
+                                {{ field|add_class:"form-control" }}
+                            {% endif %}
                             
                             {% if field.errors %}
                                 <div class="text-danger">
@@ -29,7 +34,7 @@
                     {% endfor %}
 
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary btn-lg w-100">Отправить запрос</button>
+                        <button type="submit" class="btn btn-primary btn-lg w-100">Send request</button>
                     </div>
                 </div>
             </div>

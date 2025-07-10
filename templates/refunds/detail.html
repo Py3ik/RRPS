@@ -1,40 +1,41 @@
 {% extends 'base.html' %}
 
-{% block title %}Детали запроса на возврат{% endblock %}
+{% block title %}Refund Request Details{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Детали запроса на возврат #{{ refund_request.id }}</h2>
+    <h2 class="text-center mb-4">Refund Request Details #{{ refund_request.id }}</h2>
     <div class="card shadow-sm mb-5">
         <div class="card-body">
-            <h4 class="card-title">Информация о заказе</h4>
-            <p><strong>Номер заказа:</strong> {{ refund_request.order_number }}</p>
-            <p><strong>Дата заказа:</strong> {{ refund_request.order_date }}</p>
+            <h4 class="card-title">Order Information</h4>
+            <p><strong>Order Number:</strong> {{ refund_request.order_number }}</p>
+            <p><strong>Order Date:</strong> {{ refund_request.order_date }}</p>
 
-            <h4 class="card-title mt-4">Личные данные</h4>
-            <p><strong>Имя:</strong> {{ refund_request.first_name }} {{ refund_request.last_name }}</p>
-            <p><strong>Номер телефона:</strong> {{ refund_request.phone_number }}</p>
+            <h4 class="card-title mt-4">Personal Information</h4>
+            <p><strong>First Name:</strong> {{ refund_request.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ refund_request.last_name }}</p>
+            <p><strong>Phone Number:</strong> {{ refund_request.phone_number }}</p>
             <p><strong>Email:</strong> {{ refund_request.email }}</p>
 
-            <h4 class="card-title mt-4">Адресные данные</h4>
-            <p><strong>Страна:</strong> {{ refund_request.country }}</p>
-            <p><strong>Адрес:</strong> {{ refund_request.address }}</p>
-            <p><strong>Почтовый код:</strong> {{ refund_request.postal_code }}</p>
-            <p><strong>Город:</strong> {{ refund_request.city }}</p>
+            <h4 class="card-title mt-4">Address Information</h4>
+            <p><strong>Country:</strong> {{ refund_request.country }}</p>
+            <p><strong>Address:</strong> {{ refund_request.address }}</p>
+            <p><strong>Postal Code:</strong> {{ refund_request.postal_code }}</p>
+            <p><strong>City:</strong> {{ refund_request.city }}</p>
 
-            <h4 class="card-title mt-4">Возвращаемые товары</h4>
+            <h4 class="card-title mt-4">Returned Products</h4>
             <p>{{ refund_request.products }}</p>
 
-            <h4 class="card-title mt-4">Причина возврата</h4>
+            <h4 class="card-title mt-4">Return Reason</h4>
             <p>{{ refund_request.reason }}</p>
 
-            <h4 class="card-title mt-4">Информация о банке</h4>
-            <p><strong>Название банка:</strong> {{ refund_request.bank_name }}</p>
-            <p><strong>Тип аккаунта:</strong> {{ refund_request.get_account_type_display }}</p>
+            <h4 class="card-title mt-4">Bank Information</h4>
+            <p><strong>Bank Name:</strong> {{ refund_request.bank_name }}</p>
+            <p><strong>Account Type:</strong> {{ refund_request.get_account_type_display }}</p>
             <p><strong>IBAN:</strong> {{ refund_request.iban }}</p>
 
-            <h4 class="card-title mt-4">Статус запроса</h4>
-            <p><strong>Статус:</strong> {{ refund_request.get_status_display }}</p>
+            <h4 class="card-title mt-4">Request Status</h4>
+            <p><strong>Status:</strong> {{ refund_request.get_status_display }}</p>
         </div>
     </div>
 </div>
