@@ -46,5 +46,4 @@ class RefundRequestForm(forms.ModelForm):
             return iban
 
         except requests.RequestException as e:
-            print("Ошибка API:", e)
             raise ValidationError("Ошибка проверки IBAN. Попробуйте позже.")

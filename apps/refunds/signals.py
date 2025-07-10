@@ -29,7 +29,6 @@ def send_notification_email(
 
 @receiver(pre_save, sender=RefundRequest)
 def refund_status_changed(sender, instance, **kwargs):
-    print("2131239812398120938102983890123")
     if instance.pk:
         old_instance = RefundRequest.objects.get(pk=instance.pk)
         recipient = instance.email or instance.user.email
