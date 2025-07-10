@@ -83,7 +83,7 @@ class ValidateIBANView(View):
     def post(self, request):
         iban = request.POST.get("iban")
         if not iban:
-            return JsonResponse({"error": "IBAN не указан"}, status=400)
+            return JsonResponse({"error": "IBAN is not provided"}, status=400)
 
         cache_key = f"iban_validation_{iban}"
         cached_result = cache.get(cache_key)
@@ -100,16 +100,16 @@ class ValidateIBANView(View):
             result = {
                 "valid": data.get("is_valid", False),
                 "message": (
-                    "IBAN действителен"
+                    "IBAN is valid"
                     if data.get("is_valid")
-                    else "IBAN недействителен"
+                    else "IBAN is invalid"
                 ),
             }
             cache.set(cache_key, result, timeout=3600)
             return JsonResponse(result)
         except requests.RequestException as e:
             return JsonResponse(
-                {"error": f"Ошибка проверки IBAN: {str(e)}"}, status=500
+                {"error": f"IBAN validation error: {str(e)}"}, status=500
             )
 
 
