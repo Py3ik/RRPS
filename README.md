@@ -43,7 +43,7 @@ A system for managing refund requests. Supports registration, authentication, as
     pip install -r requirements.txt
     ```
 
-4. **Create a `.env` file in the root:**
+4. **Create a `.env` file in the refund_system:**
     ```env
     SECRET_KEY=''
     USE_SQLITE=False
